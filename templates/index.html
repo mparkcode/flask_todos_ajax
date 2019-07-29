@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css" />
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='site.js') }}"></script>
+    
+</head>
+<body>
+    
+    <h1>Things I really need to do...</h1>
+    
+    {% for task in tasks %}
+    
+    <p><span id="item{{task.id}}" class="{% if task.urgent %}urgent{% endif %} {% if task.done %}done{% endif %}">{{ task.name }}</span>
+    <a href="/edit/{{ task.id }}">Edit</a>
+    <a href="javascript:;" onClick="toggle_backend({{task.id}})">Toggle</a>
+    </p>
+
+    {% endfor %}
+
+    <a href="/add">Add Task</a>
+    
+    <br>
+    
+</body>
+</html>
